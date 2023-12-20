@@ -1,4 +1,5 @@
 #include "Piece.h"
+#include <memory>
 
 Piece::Piece(Color color, const Point &pos) : _color(color), _pos(pos)
 {
@@ -25,14 +26,14 @@ bool Piece::can_move_to(const Point &pos) const
         return false;
     }
 
-    Board copy_board = *_board;
-    Piece *copy_this = copy_board[this->_pos];
-    copy_board[copy_this->_pos] = nullptr;
-    copy_board[pos] = copy_this;
-    copy_this->_pos = pos;
+    std::unique_ptr<Piece> prev_piece = std::move(_board[pos]);
+    Point prev_pos = this->_pos;
+
+    _board[pos] = std::move(_board[this->_pos]);
+    this->_pos = pos;
 
     Attacks enemy_attacks{};
-    for (const auto *piece : copy_board)
+    for (const auto *piece : _board)
     {
         if (piece->color() != this->_color)
         {
@@ -40,9 +41,14 @@ bool Piece::can_move_to(const Point &pos) const
         }
     }
 
-    Point king_pos = copy_board.king_of(this->_color).pos();
+    Point king_pos = _board.king_of(this->_color).pos();
 
-    return !enemy_attacks[king_pos.x][king_pos.y];
+    bool can_move = !enemy_attacks[king_pos.x][king_pos.y];
+    this->_pos = prev_pos;
+    _board[prev_pos] = std::move(_board[pos]);
+    _board[pos] = std::move(prev_piece);
+
+    return can_move;
 }
 
 bool Piece::move_to(const Point &pos)
@@ -52,8 +58,7 @@ bool Piece::move_to(const Point &pos)
         return false;
     }
 
-    this->_board[this->_pos] = nullptr;
-    this->_board[pos] = this;
+    this->_board[pos] = std::move(this->_board[this->_pos]);
     this->_pos = pos;
 
     return true;
