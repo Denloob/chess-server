@@ -396,3 +396,16 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Pre commit hook
+.pre-commit-config.yaml
+
+# C++ compile commands
+compile_commands.json
+
+# Compile scripts
+Makefile
+
+# Compile binaries
+.bin
+.deps
