@@ -26,6 +26,6 @@ class Piece
     Point pos() const;
 
   private:
-    Point _pos{};
     Color _color{};
+    Point _pos{};
 };
