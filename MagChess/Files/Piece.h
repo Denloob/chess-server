@@ -6,6 +6,15 @@
 class Piece
 {
   public:
+    enum class Type : char
+    {
+        Pawn = 'p',
+        King = 'k',
+        Queen = 'q',
+        Bishop = 'b',
+        Knight = 'n',
+        Rook = 'r',
+    };
     enum class Color
     {
         Black,
