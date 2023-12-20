@@ -28,7 +28,7 @@ class Piece
     virtual ~Piece() = default;
 
     virtual bool move_to(const Point &pos);
-    virtual bool can_move_to(const Point &pos) const = 0;
+    virtual bool can_move_to(const Point &pos) const;
     virtual void add_attacks_to(Attacks &attacks) const = 0;
 
     Color color() const;
