@@ -2,7 +2,7 @@
 
 #include "Board.h"
 #include "Point.h"
-
+p , k , q , b , n ,r 
 class Piece
 {
   public:
