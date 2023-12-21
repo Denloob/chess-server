@@ -1,6 +1,6 @@
 #include "Board.h"
 
-Board::Board(const std::string &build_format_string) 
+Board::Board(const std::string& build_format_string)
 {
     this->_black_king_pos = nullptr;
     this->_white_king_pos = nullptr;
@@ -43,28 +43,28 @@ Board::Board(const std::string &build_format_string)
                 _board[row][col++] = std::make_unique<King>();
                 break;
             case 'q':
-                _board[row][col++] = std::make_unique<Piece>(); 
+                _board[row][col++] = std::make_unique<Piece>();
                 break;
             case 'Q':
                 _board[row][col++] = std::make_unique<Piece>();
                 break;
             case 'b':
-                _board[row][col++] = std::make_unique<Piece>(); 
+                _board[row][col++] = std::make_unique<Piece>();
                 break;
             case 'B':
-                _board[row][col++] = std::make_unique<Piece>(); 
+                _board[row][col++] = std::make_unique<Piece>();
                 break;
             case 'n':
-                _board[row][col++] = std::make_unique<Piece>(); 
+                _board[row][col++] = std::make_unique<Piece>();
                 break;
             case 'N':
-                _board[row][col++] = std::make_unique<Piece>(); 
+                _board[row][col++] = std::make_unique<Piece>();
                 break;
             case 'r':
-                _board[row][col++] = std::make_unique<Piece>(); 
+                _board[row][col++] = std::make_unique<Piece>();
                 break;
             case 'R':
-                _board[row][col++] = std::make_unique<Piece>(); 
+                _board[row][col++] = std::make_unique<Piece>();
                 break;
             default:
                 _board[row][col++] = nullptr;
