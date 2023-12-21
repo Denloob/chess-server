@@ -36,5 +36,5 @@ class Piece
 
   private:
     Color _color{};
-    Point _pos{};
+    mutable Point _pos{};
 };
