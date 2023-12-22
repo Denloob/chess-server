@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Piece.h"
+#include "RestrictedPiece.h"
 
-class Pawn : public Piece
+class Pawn : public RestrictedPiece
 {
-    using Piece::can_move_to;
-    using Piece::Piece;
+    using RestrictedPiece::can_move_to;
+    using RestrictedPiece::RestrictedPiece;
 
     void add_attacks_to(Attacks& attacks) const override;
 };
