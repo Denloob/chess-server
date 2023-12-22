@@ -9,12 +9,6 @@ template <typename T>
 using BoardTable = std::array<std::array<T, BOARD_SIZE>, BOARD_SIZE>;
 
 #include "Piece.h"
-#include "Bishop.h"
-#include "Queen.h"
-#include "Rook.h"
-#include "King.h"
-#include "Knight.h"
-#include "Pawn.h"
 
 class Board
 {

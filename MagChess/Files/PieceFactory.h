@@ -3,6 +3,12 @@
 #include "Piece.h"
 #include <memory>
 #include <utility>
+#include "Bishop.h"
+#include "Queen.h"
+#include "Rook.h"
+#include "King.h"
+#include "Knight.h"
+#include "Pawn.h"
 
 namespace PieceFactory
 {
