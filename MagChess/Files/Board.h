@@ -32,7 +32,7 @@ enum class Type : char
 public:
     Board(const std::string &build_format_string = DEFAULT_BOARD_STRING);
     ~Board() = default;
-     //std::string to_string(); 
+     //std::string to_string(); decide later
 
 private:
     Point _black_king_pos;
