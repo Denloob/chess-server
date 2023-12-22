@@ -79,4 +79,13 @@ void add_forks_attacks_to(Piece::Attacks& attacks, const Piece& piece)
         */
         attacks, piece);
 }
+void add_nearby_places_attacks_to(Piece::Attacks& attacks, const Piece& piece)
+{
+    add_attacks_in_direction_to(
+        { Direction::LEFT , Direction::UP , Direction::DOWN,Direction::RIGHT,
+          Direction::UP + Direction::RIGHT , Direction::UP + Direction::LEFT,
+          Direction::DOWN + Direction::RIGHT , Direction::DOWN + Direction::LEFT,
+        },
+        attacks, piece);
+}
 } // namespace Utils

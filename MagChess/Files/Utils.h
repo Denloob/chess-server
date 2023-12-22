@@ -16,4 +16,5 @@ constexpr Point DOWN{0, 1};
 void add_orthogonal_attacks_to(Piece::Attacks &attacks, const Piece &piece);
 void add_diagonal_attacks_to(Piece::Attacks &attacks, const Piece &piece);
 void add_forks_attacks_to(Piece::Attacks& attacks, const Piece& piece);
+void add_nearby_places_attacks_to(Piece::Attacks& attacks, const Piece& piece);
 } // namespace Utils
