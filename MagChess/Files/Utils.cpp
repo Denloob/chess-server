@@ -88,4 +88,12 @@ void add_nearby_places_attacks_to(Piece::Attacks& attacks, const Piece& piece)
         },
         attacks, piece);
 }
+void add_above_row_attacks_to(Piece::Attacks& attacks, const Piece& piece)
+{
+    add_attacks_in_direction_to(
+        {
+          Direction::UP + Direction::RIGHT , Direction::UP + Direction::LEFT,Direction::UP,
+        },
+        attacks, piece);
+}
 } // namespace Utils
