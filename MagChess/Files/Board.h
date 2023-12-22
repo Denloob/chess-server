@@ -4,7 +4,7 @@
 #include <array>
 #include <memory>
 #define DEFAULT_BOARD_STRING "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR b KQkq"
-constexpr int BOARD_SIZE = 7; //8 lines index 0 -7
+constexpr int BOARD_SIZE = 8;
 template <typename T>
 using BoardTable = std::array<std::array<T, BOARD_SIZE>, BOARD_SIZE>;
 
