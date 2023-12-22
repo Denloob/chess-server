@@ -10,7 +10,7 @@ namespace
 void add_attacks_in_direction_to(std::initializer_list<Point> directions,
                                  Piece::Attacks &attacks, const Piece &piece)
 {
-    const Board &board = *piece.board();
+    const Board &board = *piece.board();//class piece has no member board
     for (auto direction : directions)
     {
         Point current_pos = piece.pos();
