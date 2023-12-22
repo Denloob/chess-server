@@ -35,6 +35,27 @@ void add_attacks_in_direction_to(std::initializer_list<Point> directions,
         }
     }
 }
+
+void add_attacks_at_position_to(std::initializer_list<Point> positions,
+                                Piece::Attacks &attacks, const Piece &piece)
+{
+    const Board &board = *piece.board();
+    for (auto position : positions)
+    {
+        try
+        {
+            const Piece *target = board[piece.pos() + position].get();
+            if (target == nullptr || target->color() != piece.color())
+            {
+                attacks[position.x][position.y] = true;
+            }
+        }
+        catch (const std::out_of_range &)
+        {
+            // Ignore
+        }
+    }
+}
 } // namespace
 
 namespace Utils
@@ -55,7 +76,7 @@ void add_diagonal_attacks_to(Piece::Attacks &attacks, const Piece &piece)
 }
 void add_forks_attacks_to(Piece::Attacks& attacks, const Piece& piece)
 {
-    add_attacks_in_direction_to(
+    add_attacks_at_position_to(
         {
             Direction::UP + Direction::UP + Direction::LEFT , 
             Direction::UP + Direction::UP + Direction::RIGHT,
@@ -81,7 +102,7 @@ void add_forks_attacks_to(Piece::Attacks& attacks, const Piece& piece)
 }
 void add_nearby_places_attacks_to(Piece::Attacks& attacks, const Piece& piece)
 {
-    add_attacks_in_direction_to(
+    add_attacks_at_position_to(
         { Direction::LEFT , Direction::UP , Direction::DOWN,Direction::RIGHT,
           Direction::UP + Direction::RIGHT , Direction::UP + Direction::LEFT,
           Direction::DOWN + Direction::RIGHT , Direction::DOWN + Direction::LEFT,
@@ -90,7 +111,7 @@ void add_nearby_places_attacks_to(Piece::Attacks& attacks, const Piece& piece)
 }
 void add_above_row_attacks_to(Piece::Attacks& attacks, const Piece& piece)
 {
-    add_attacks_in_direction_to(
+    add_attacks_at_position_to(
         {
           Direction::UP + Direction::RIGHT , Direction::UP + Direction::LEFT,Direction::UP,
         },
