@@ -3,7 +3,7 @@
 #include "PieceFactory.h"
 #include <cctype>
 
-Board::Board(const std::string& build_format_string = DEFAULT_BOARD_STRING)
+Board::Board(const std::string &build_format_string)
 {
     int row = 0;
     int col = 0;
