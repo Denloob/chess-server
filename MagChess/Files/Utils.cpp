@@ -53,4 +53,30 @@ void add_diagonal_attacks_to(Piece::Attacks &attacks, const Piece &piece)
          Direction::LEFT + Direction::DOWN, Direction::RIGHT + Direction::DOWN},
         attacks, piece);
 }
+void add_forks_attacks_to(Piece::Attacks& attacks, const Piece& piece)
+{
+    add_attacks_in_direction_to(
+        {
+            Direction::UP + Direction::UP + Direction::LEFT , 
+            Direction::UP + Direction::UP + Direction::RIGHT,
+            Direction::DOWN + Direction::DOWN + Direction::LEFT,
+            Direction::DOWN + Direction::DOWN + Direction::RIGHT,
+            Direction::RIGHT + Direction::RIGHT + Direction::UP,
+            Direction::RIGHT + Direction::RIGHT + Direction::DOWN,
+            Direction::LEFT + Direction::LEFT + Direction::UP,
+            Direction::LEFT + Direction::LEFT + Direction::DOWN
+        },
+        /*
+           | ||*| |*|| |
+           ------------
+           |*|| | | ||*|
+           ------------
+           | || |K| || |
+           ------------
+           |*|| | | ||*|
+           ------------
+           | ||*| |*|| |
+        */
+        attacks, piece);
+}
 } // namespace Utils
