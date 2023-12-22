@@ -18,17 +18,6 @@ using BoardTable = std::array<std::array<T, BOARD_SIZE>, BOARD_SIZE>;
 
 class Board
 {
-
-enum class Type : char
-    {
-        Pawn = 'p',
-        King = 'k',
-        Queen = 'q',
-        Bishop = 'b',
-        Knight = 'n',
-        Rook = 'r',
-    };
-
 public:
     Board(const std::string &build_format_string = DEFAULT_BOARD_STRING);
     ~Board() = default;
