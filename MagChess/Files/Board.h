@@ -8,13 +8,18 @@ constexpr int BOARD_SIZE = 7; //8 lines index 0 -7
 template <typename T>
 using BoardTable = std::array<std::array<T, BOARD_SIZE>, BOARD_SIZE>;
 
-#include "Piece.h"
-
+class Piece;
 class Board
 {
 public:
     Board(const std::string &build_format_string = DEFAULT_BOARD_STRING);
-    ~Board() = default;
+
+    Board(const Board &) = delete;
+    Board(Board &&) = delete;
+    Board &operator=(const Board &) = delete;
+    Board &operator=(Board &&) = delete;
+
+    ~Board();
      //std::string to_string(); decide later
 
 private:

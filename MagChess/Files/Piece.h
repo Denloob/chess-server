@@ -2,7 +2,7 @@
 
 #include "Board.h"
 #include "Point.h"
-class Board;
+
 class Piece
 {
   public:

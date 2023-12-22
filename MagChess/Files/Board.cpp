@@ -52,3 +52,5 @@ Board::Board(const std::string& build_format_string = DEFAULT_BOARD_STRING)
         }
     }
 }
+
+Board::~Board() = default;
