@@ -14,6 +14,7 @@ using BoardTable = std::array<std::array<T, BOARD_SIZE>, BOARD_SIZE>;
 #include "Rook.h"
 #include "King.h"
 #include "Knight.h"
+#include "Pawn.h"
 
 class Board
 {
