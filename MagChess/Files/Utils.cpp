@@ -23,7 +23,7 @@ void add_attacks_in_direction_to(std::initializer_list<Point> directions,
                 current_pos += direction;
 
                 hit_piece = board[current_pos] != nullptr;
-                if (hit_piece && board[current_pos]->color() != piece.color())
+                if (!hit_piece || board[current_pos]->color() != piece.color())
                 {
                     attacks[current_pos.x][current_pos.y] = true;
                 }
