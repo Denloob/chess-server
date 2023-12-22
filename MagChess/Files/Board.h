@@ -12,7 +12,7 @@ class Piece;
 class Board
 {
 public:
-    Board(const std::string &build_format_string = DEFAULT_BOARD_STRING);
+    explicit Board(const std::string &build_format_string = DEFAULT_BOARD_STRING);
 
     Board(const Board &) = delete;
     Board(Board &&) = delete;
