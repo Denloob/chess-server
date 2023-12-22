@@ -1,4 +1,7 @@
 #include "Board.h"
+#include "Piece.h"
+#include "PieceFactory.h"
+#include <cctype>
 
 Board::Board(const std::string& build_format_string = DEFAULT_BOARD_STRING)
 {
@@ -20,53 +23,31 @@ Board::Board(const std::string& build_format_string = DEFAULT_BOARD_STRING)
             int emptyCount = c - '0';
             for (int i = 0; i < emptyCount; ++i)
             {
-                _board[row][col++] = nullptr;
+                _board[row][col] = nullptr;
+                col++;
             }
         }
         else
         {
-            switch (c)
+            using Color = Piece::Color;
+
+            auto type = static_cast<Piece::Type>(std::tolower(c));
+            auto color = std::isupper(c) ? Color::White : Color::Black;
+            Point pos{row, col};
+
+            _board[row][col] = PieceFactory::create_shape(type, color, pos);
+            col++;
+
+            if (type == Piece::Type::King)
             {
-                //(upper = white, lower = black)
-            case 'p':
-                _board[row][col++] = std::make_unique<Pawn>(Piece::Color::Black, Point{ row,col });
-                break;
-            case 'P':
-                _board[row][col++] = std::make_unique<Pawn>(Piece::Color::White , Point{ row,col });                break;
-            case 'k':
-                _board[row][col++] = std::make_unique<King>(Piece::Color::Black, Point{ row,col });
-                this->_black_king_pos = Point{row,col};
-                break;
-            case 'K':
-                _board[row][col++] = std::make_unique<King>(Piece::Color::White, Point{ row,col });
-                this->_white_king_pos = Point{ row,col };
-                break;
-            case 'q':
-                _board[row][col++] = std::make_unique<Queen>(Piece::Color::Black, Point{ row,col });
-                break;
-            case 'Q':
-                _board[row][col++] = std::make_unique<Queen>(Piece::Color::White, Point{ row,col });
-                break;
-            case 'b':
-                _board[row][col++] = std::make_unique<Bishop>(Piece::Color::Black, Point{ row,col });
-                break;
-            case 'B':
-                _board[row][col++] = std::make_unique<Bishop>(Piece::Color::White, Point{ row,col });
-                break;
-            case 'n':
-                _board[row][col++] = std::make_unique<Knight>(Piece::Color::Black, Point{ row,col });
-                break;
-            case 'N':
-                _board[row][col++] = std::make_unique<Knight>(Piece::Color::White, Point{ row,col });
-                break;
-            case 'r':
-                _board[row][col++] = std::make_unique<Rook>(Piece::Color::Black, Point{ row,col });
-                break;
-            case 'R':
-                _board[row][col++] = std::make_unique<Rook>(Piece::Color::White, Point{ row,col });
-                break;
-            default:
-                _board[row][col++] = nullptr;
+                if (color == Color::White)
+                {
+                    this->_white_king_pos = pos;
+                }
+                else
+                {
+                    this->_black_king_pos = pos;
+                }
             }
         }
     }
