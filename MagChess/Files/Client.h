@@ -40,3 +40,5 @@ class Client
 
     virtual ~Client() = 0;
 };
+
+inline Client::~Client() = default;
