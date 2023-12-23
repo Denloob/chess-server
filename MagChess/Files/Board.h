@@ -1,4 +1,5 @@
 #pragma once
+#include "King.h"
 #include "Point.h"
 #include <iostream>
 #include <array>
@@ -27,10 +28,17 @@ public:
 
     std::unique_ptr<Piece> &operator[](const Point &pos);
 
+    const King &king_of(Piece::Color color) const;
+    King &king_of(Piece::Color color);
+
      //std::string to_string(); decide later
 
 private:
-    Point _black_king_pos;
-    Point _white_king_pos;
+    const King *const &king_ptr_of(Piece::Color color) const;
+    King *&king_ptr_of(Piece::Color color);
+
+
+    King *_black_king{};
+    King *_white_king{};
     BoardTable <std::unique_ptr<Piece>> _board{};
 };
