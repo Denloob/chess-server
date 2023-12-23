@@ -14,7 +14,7 @@
 namespace PieceFactory
 {
 template <typename... Args>
-std::unique_ptr<Piece> create_shape(Piece::Type type, Args &&...args)
+std::unique_ptr<Piece> create_piece(Piece::Type type, Args &&...args)
 {
     switch (type)
     {
