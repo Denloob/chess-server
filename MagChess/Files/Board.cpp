@@ -36,7 +36,7 @@ Board::Board(const std::string &build_format_string)
             auto color = std::isupper(c) ? Color::White : Color::Black;
             Point pos{row, col};
 
-            _board.at(row).at(col) = PieceFactory::create_shape(type, color, pos);
+            _board.at(row).at(col) = PieceFactory::create_shape(type, color, pos, this);
 
             if (type == Piece::Type::King)
             {
