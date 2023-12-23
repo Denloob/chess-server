@@ -57,3 +57,13 @@ Point Piece::pos() const
 {
     return this->_pos;
 }
+
+const Board *Piece::board() const
+{
+    return this->_board;
+}
+
+Board *Piece::board()
+{
+    return this->_board;
+}
