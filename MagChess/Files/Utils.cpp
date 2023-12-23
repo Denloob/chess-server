@@ -25,7 +25,7 @@ void add_attacks_in_direction_to(std::initializer_list<Point> directions,
                 hit_piece = board.at(current_pos) != nullptr;
                 if (!hit_piece || board.at(current_pos)->color() != piece.color())
                 {
-                    attacks[current_pos.x][current_pos.y] = true;
+                    attacks.at(current_pos.x).at(current_pos.y) = true;
                 }
             }
         }
@@ -114,7 +114,7 @@ void add_attacks_at_position_to(std::initializer_list<Point> positions,
             const Piece *target = board.at(piece.pos() + position);
             if (target == nullptr || target->color() != piece.color())
             {
-                attacks[position.x][position.y] = true;
+                attacks.at(position.x).at(position.y) = true;
             }
         }
         catch (const std::out_of_range &)

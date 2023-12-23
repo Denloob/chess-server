@@ -11,7 +11,7 @@ bool Piece::can_move_to(const Point &pos) const
     Attacks attacks{};
     add_attacks_to(attacks);
 
-    if (!attacks[pos.x][pos.y])
+    if (!attacks.at(pos.x).at(pos.y))
     {
         return false;
     }
@@ -35,7 +35,7 @@ bool Piece::can_move_to(const Point &pos) const
 
     Point king_pos = board.king_of(this->_color).pos();
 
-    bool can_move = !enemy_attacks[king_pos.x][king_pos.y];
+    bool can_move = !enemy_attacks.at(king_pos.x).at(king_pos.y);
     this->_pos = prev_pos;
     board[prev_pos] = std::move(board[pos]);
     board[pos] = std::move(prev_piece);

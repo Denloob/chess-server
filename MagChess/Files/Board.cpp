@@ -24,7 +24,7 @@ Board::Board(const std::string &build_format_string)
             int emptyCount = c - '0';
             for (int i = 0; i < emptyCount; ++i)
             {
-                _board[row][col] = nullptr;
+                _board.at(row).at(col) = nullptr;
                 col++;
             }
         }
@@ -36,11 +36,11 @@ Board::Board(const std::string &build_format_string)
             auto color = std::isupper(c) ? Color::White : Color::Black;
             Point pos{row, col};
 
-            _board[row][col] = PieceFactory::create_shape(type, color, pos);
+            _board.at(row).at(col) = PieceFactory::create_shape(type, color, pos);
 
             if (type == Piece::Type::King)
             {
-                auto *king = dynamic_cast<King *>(_board[row][col].get());
+                auto *king = dynamic_cast<King *>(_board.at(row).at(col).get());
                 king_ptr_of(color) = king;
             }
 
@@ -53,17 +53,17 @@ Board::~Board() = default;
 
 const Piece *Board::at(const Point &pos) const
 {
-    return _board[pos.x][pos.y].get();
+    return _board.at(pos.x).at(pos.y).get();
 }
 
 Piece *Board::at(const Point &pos)
 {
-    return _board[pos.x][pos.y].get();
+    return _board.at(pos.x).at(pos.y).get();
 }
 
 std::unique_ptr<Piece> &Board::operator[](const Point &pos)
 {
-    return _board[pos.x][pos.y];
+    return _board.at(pos.x).at(pos.y);
 }
 
 const King &Board::king_of(Piece::Color color) const
