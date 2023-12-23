@@ -21,5 +21,4 @@ void add_attacks_at_position_to(std::initializer_list<Point> positions,
 
 void add_forks_attacks_to(Piece::Attacks& attacks, const Piece& piece);
 void add_nearby_places_attacks_to(Piece::Attacks& attacks, const Piece& piece);
-void add_above_row_attacks_to(Piece::Attacks& attacks, const Piece& piece);
 } // namespace Utils

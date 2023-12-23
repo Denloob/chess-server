@@ -92,16 +92,6 @@ void add_nearby_places_attacks_to(Piece::Attacks &attacks, const Piece &piece)
         },
         attacks, piece);
 }
-void add_above_row_attacks_to(Piece::Attacks &attacks, const Piece &piece)
-{
-    add_attacks_at_position_to(
-        {
-            Direction::UP + Direction::RIGHT,
-            Direction::UP + Direction::LEFT,
-            Direction::UP,
-        },
-        attacks, piece);
-}
 
 void add_attacks_at_position_to(std::initializer_list<Point> positions,
                                 Piece::Attacks &attacks, const Piece &piece)
