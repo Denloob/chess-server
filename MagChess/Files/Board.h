@@ -30,7 +30,7 @@ public:
 
     bool under_check(Piece::Color color);
 
-     //std::string to_string(); decide later
+    std::string to_string() const;
 
 private:
     const King *const &king_ptr_of(Piece::Color color) const;

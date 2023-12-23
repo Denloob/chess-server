@@ -104,3 +104,27 @@ bool Board::under_check(Piece::Color color)
 
     return enemy_attacks.at(king_pos.x).at(king_pos.y);
 }
+
+std::string Board::to_string() const
+{
+    std::string res;
+    for (const auto &row : _board)
+    {
+        for (const auto &piece : row)
+        {
+            if (piece.get() == nullptr)
+            {
+                res += '#';
+            }
+            else
+            {
+                const auto piece_char = static_cast<char>(piece->type());
+                res += piece->color() == Piece::Color::White
+                           ? std::toupper(piece_char)
+                           : std::tolower(piece_char);
+            }
+        }
+    }
+
+    return res;
+}
