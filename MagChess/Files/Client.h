@@ -5,9 +5,9 @@
 class Client
 {
   public:
-    enum class MoveResult
+    enum class MoveResult : char
     {
-        Ok,
+        Ok = '0',
         Check,
         NotYourPiece,
         DestinationOccupied,
