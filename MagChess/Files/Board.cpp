@@ -6,8 +6,7 @@
 
 Board::Board(const std::string &build_format_string)
 {
-    int row = 0;
-    int col = 0;
+    Point pos{0, 0};
 
     for (char c : build_format_string)
     {
@@ -16,16 +15,16 @@ Board::Board(const std::string &build_format_string)
 
         if (c == '/')
         {
-            row++;
-            col = 0;
+            pos.y++;
+            pos.x = 0;
         }
         else if (isdigit(c))
         {
             int emptyCount = c - '0';
             for (int i = 0; i < emptyCount; ++i)
             {
-                _board.at(row).at(col) = nullptr;
-                col++;
+                (*this)[pos] = nullptr;
+                pos.x++;
             }
         }
         else
@@ -34,17 +33,16 @@ Board::Board(const std::string &build_format_string)
 
             auto type = static_cast<Piece::Type>(std::tolower(c));
             auto color = std::isupper(c) ? Color::White : Color::Black;
-            Point pos{row, col};
 
-            _board.at(row).at(col) = PieceFactory::create_piece(type, color, pos, this);
+            (*this)[pos] = PieceFactory::create_piece(type, color, pos, this);
 
             if (type == Piece::Type::King)
             {
-                auto *king = dynamic_cast<King *>(_board.at(row).at(col).get());
+                auto *king = dynamic_cast<King *>(this->at(pos));
                 king_ptr_of(color) = king;
             }
 
-            col++;
+            pos.x++;
         }
     }
 }
@@ -53,17 +51,17 @@ Board::~Board() = default;
 
 const Piece *Board::at(const Point &pos) const
 {
-    return _board.at(pos.x).at(pos.y).get();
+    return _board.at(pos.y).at(pos.x).get();
 }
 
 Piece *Board::at(const Point &pos)
 {
-    return _board.at(pos.x).at(pos.y).get();
+    return _board.at(pos.y).at(pos.x).get();
 }
 
 std::unique_ptr<Piece> &Board::operator[](const Point &pos)
 {
-    return _board.at(pos.x).at(pos.y);
+    return _board.at(pos.y).at(pos.x);
 }
 
 const King &Board::king_of(Piece::Color color) const
@@ -102,7 +100,7 @@ bool Board::under_check(Piece::Color color)
 
     Point king_pos = king_of(color).pos();
 
-    return enemy_attacks.at(king_pos.x).at(king_pos.y);
+    return enemy_attacks.at(king_pos.y).at(king_pos.x);
 }
 
 std::string Board::to_string() const

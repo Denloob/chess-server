@@ -25,7 +25,7 @@ void add_attacks_in_direction_to(std::initializer_list<Point> directions,
                 hit_piece = board.at(current_pos) != nullptr;
                 if (!hit_piece || board.at(current_pos)->color() != piece.color())
                 {
-                    attacks.at(current_pos.x).at(current_pos.y) = true;
+                    attacks.at(current_pos.y).at(current_pos.x) = true;
                 }
             }
         }

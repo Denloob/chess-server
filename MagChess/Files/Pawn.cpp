@@ -60,7 +60,7 @@ bool Pawn::can_attack(const Point &pos) const
     Attacks attacks{};
     add_attacks_to(attacks);
 
-    return attacks.at(pos.x).at(pos.y) && !target_empty &&
+    return attacks.at(pos.y).at(pos.x) && !target_empty &&
            target->color() != this->color();
 }
 

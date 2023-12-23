@@ -30,7 +30,7 @@ bool Piece::can_move_to(const Point &pos) const
     Attacks attacks{};
     add_attacks_to(attacks);
 
-    return attacks.at(pos.x).at(pos.y) && is_move_to_safe(pos);
+    return attacks.at(pos.y).at(pos.x) && is_move_to_safe(pos);
 }
 
 bool Piece::move_to(const Point &pos)
