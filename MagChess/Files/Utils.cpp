@@ -99,12 +99,13 @@ void add_attacks_at_position_to(std::initializer_list<Point> positions,
     const Board &board = *piece.board();
     for (auto position : positions)
     {
+        Point target_pos = piece.pos() + position;
         try
         {
-            const Piece *target = board.at(piece.pos() + position);
+            const Piece *target = board.at(target_pos);
             if (target == nullptr || target->color() != piece.color())
             {
-                attacks.at(position.x).at(position.y) = true;
+                attacks.at(target_pos.y).at(target_pos.x) = true;
             }
         }
         catch (const std::out_of_range &)
