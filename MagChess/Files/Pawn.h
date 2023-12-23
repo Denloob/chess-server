@@ -16,5 +16,7 @@ class Pawn : public RestrictedPiece
     bool can_attack(const Point &pos) const;
     bool can_en_passant(const Point &pos) const;
 
+    Point up_direction() const;
+
     Type type() const override;
 };
