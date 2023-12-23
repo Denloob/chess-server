@@ -28,6 +28,8 @@ public:
     const King &king_of(Piece::Color color) const;
     King &king_of(Piece::Color color);
 
+    bool under_check(Piece::Color color);
+
      //std::string to_string(); decide later
 
 private:

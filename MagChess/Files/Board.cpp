@@ -85,3 +85,22 @@ King *&Board::king_ptr_of(Piece::Color color)
 {
     return color == Piece::Color::White ? _white_king : _black_king;
 }
+
+bool Board::under_check(Piece::Color color)
+{
+    Piece::Attacks enemy_attacks{};
+    for (const auto &row : _board)
+    {
+        for (const auto &piece : row)
+        {
+            if (piece.get() != nullptr && piece->color() != color)
+            {
+                piece->add_attacks_to(enemy_attacks);
+            }
+        }
+    }
+
+    Point king_pos = king_of(color).pos();
+
+    return enemy_attacks.at(king_pos.x).at(king_pos.y);
+}
