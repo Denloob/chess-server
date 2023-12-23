@@ -38,6 +38,8 @@ class Piece
     const Board *board() const;
     Board *board();
 
+    virtual Type type() const = 0;
+
   protected:
     /**
      * @brief Check if move to the given pos would lead to a discovered attack

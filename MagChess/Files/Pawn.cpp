@@ -61,3 +61,8 @@ bool Pawn::can_attack(const Point &pos) const
     return attacks.at(pos.x).at(pos.y) && !target_empty &&
            target->color() != this->color();
 }
+
+Piece::Type Pawn::type() const
+{
+    return Type::Pawn;
+}

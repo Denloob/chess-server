@@ -5,3 +5,8 @@ void King::add_attacks_to(Attacks& attacks) const
 {
     Utils::add_nearby_places_attacks_to(attacks, *this);
 }
+
+Piece::Type King::type() const
+{
+    return Type::King;
+}
