@@ -2,6 +2,7 @@
 
 #include "Piece.h"
 #include <memory>
+#include <stdexcept>
 #include <utility>
 #include "Bishop.h"
 #include "Queen.h"
