@@ -23,7 +23,7 @@ class Piece
     };
     using Attacks = BoardTable<bool>;
 
-    Piece(Color color, const Point &pos);
+    Piece(Color color, const Point &pos, Board *board);
     Piece(const Piece &) = default;
     Piece &operator=(const Piece &) = default;
     virtual ~Piece() = default;
@@ -35,7 +35,11 @@ class Piece
     Color color() const;
     Point pos() const;
 
+    const Board *board() const;
+    Board *board();
+
   private:
     Color _color{};
     mutable Point _pos{};
+    Board *_board;
 };

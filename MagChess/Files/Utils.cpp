@@ -10,7 +10,7 @@ namespace
 void add_attacks_in_direction_to(std::initializer_list<Point> directions,
                                  Piece::Attacks &attacks, const Piece &piece)
 {
-    const Board &board = *piece.board(); //class piece has no member board
+    const Board &board = *piece.board();
     for (auto direction : directions)
     {
         Point current_pos = piece.pos();
@@ -22,8 +22,8 @@ void add_attacks_in_direction_to(std::initializer_list<Point> directions,
             {
                 current_pos += direction;
 
-                hit_piece = board[current_pos] != nullptr;
-                if (!hit_piece || board[current_pos]->color() != piece.color())
+                hit_piece = board.at(current_pos) != nullptr;
+                if (!hit_piece || board.at(current_pos)->color() != piece.color())
                 {
                     attacks[current_pos.x][current_pos.y] = true;
                 }
@@ -111,7 +111,7 @@ void add_attacks_at_position_to(std::initializer_list<Point> positions,
     {
         try
         {
-            const Piece *target = board[piece.pos() + position].get();
+            const Piece *target = board.at(piece.pos() + position);
             if (target == nullptr || target->color() != piece.color())
             {
                 attacks[position.x][position.y] = true;
