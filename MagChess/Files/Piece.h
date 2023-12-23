@@ -38,6 +38,15 @@ class Piece
     const Board *board() const;
     Board *board();
 
+  protected:
+    /**
+     * @brief Check if move to the given pos would lead to a discovered attack
+     *          on the king of the same color as the piece.
+     *
+     * @return Whether the move will lead to a discovered attack.
+     */
+    bool is_move_to_safe(const Point &pos) const;
+
   private:
     Color _color{};
     mutable Point _pos{};

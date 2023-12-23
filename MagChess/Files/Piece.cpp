@@ -6,16 +6,8 @@ Piece::Piece(Color color, const Point &pos, Board *board) : _color(color), _pos(
 {
 }
 
-bool Piece::can_move_to(const Point &pos) const
+bool Piece::is_move_to_safe(const Point &pos) const
 {
-    Attacks attacks{};
-    add_attacks_to(attacks);
-
-    if (!attacks.at(pos.x).at(pos.y))
-    {
-        return false;
-    }
-
     Board &board = *this->_board;
 
     std::unique_ptr<Piece> prev_piece = std::move(board[pos]);
@@ -31,6 +23,14 @@ bool Piece::can_move_to(const Point &pos) const
     board[pos] = std::move(prev_piece);
 
     return can_move;
+}
+
+bool Piece::can_move_to(const Point &pos) const
+{
+    Attacks attacks{};
+    add_attacks_to(attacks);
+
+    return attacks.at(pos.x).at(pos.y) && is_move_to_safe(pos);
 }
 
 bool Piece::move_to(const Point &pos)
