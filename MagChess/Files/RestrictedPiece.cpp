@@ -2,9 +2,14 @@
 
 bool RestrictedPiece::move_to(const Point &point)
 {
-    _moved = true;
+    bool success = Piece::move_to(point);
 
-    return Piece::move_to(point);
+    if (!_moved && success)
+    {
+        _moved = true;
+    }
+
+    return success;
 }
 
 bool RestrictedPiece::has_moved() const
