@@ -38,11 +38,5 @@ class Client
      */
     virtual void submit(MoveResult result) = 0;
 
-    /* Not movable, not copyable. */
-    Client(const Client &) = delete;
-    Client(Client &&) = delete;
-    Client &operator=(const Client &) = delete;
-    Client &operator=(Client &&) = delete;
-
     virtual ~Client() = 0;
 };
