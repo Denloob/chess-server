@@ -6,7 +6,7 @@
 class RestrictedPiece : public Piece
 {
   public:
-    RestrictedPiece(Color color, const Point &pos);
+    using Piece::Piece;
     ~RestrictedPiece() override = default;
 
     /**
