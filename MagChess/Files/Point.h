@@ -11,4 +11,10 @@ struct Point
      */
     Point operator+(Point other) const;
     Point &operator+=(const Point &other);
+
+    Point operator-() const;
+    Point operator-(const Point &other) const;
+    Point &operator-=(const Point &other);
+
+    bool operator==(const Point &other) const;
 };
