@@ -20,6 +20,13 @@ public:
     Board &operator=(Board &&) = delete;
 
     ~Board();
+
+    /* @brief Simple getters for the piece * at the given possition */
+    const Piece *at(const Point &pos) const;
+    Piece *at(const Point &pos);
+
+    std::unique_ptr<Piece> &operator[](const Point &pos);
+
      //std::string to_string(); decide later
 
 private:

@@ -54,3 +54,18 @@ Board::Board(const std::string &build_format_string)
 }
 
 Board::~Board() = default;
+
+const Piece *Board::at(const Point &pos) const
+{
+    return _board[pos.x][pos.y].get();
+}
+
+Piece *Board::at(const Point &pos)
+{
+    return _board[pos.x][pos.y].get();
+}
+
+std::unique_ptr<Piece> &Board::operator[](const Point &pos)
+{
+    return _board[pos.x][pos.y];
+}
