@@ -1,4 +1,5 @@
 #include "Piece.h"
+#include "Board.h"
 #include <memory>
 
 Piece::Piece(Color color, const Point &pos) : _color(color), _pos(pos)

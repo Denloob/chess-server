@@ -1,4 +1,5 @@
 #include "Pawn.h"
+#include "Board.h"
 #include "Utils.h"
 
 void Pawn::add_attacks_to(Attacks& attacks) const

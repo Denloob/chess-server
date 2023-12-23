@@ -1,8 +1,9 @@
 #pragma once
 
-#include "Board.h"
+#include "BoardConstants.h"
 #include "Point.h"
 
+class Board;
 class Piece
 {
   public:
