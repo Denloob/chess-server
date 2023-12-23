@@ -127,12 +127,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Files\Bishop.h" />
     <ClInclude Include="Files\Board.h" />
+    <ClInclude Include="Files\King.h" />
+    <ClInclude Include="Files\Knight.h" />
+    <ClInclude Include="Files\Pawn.h" />
     <ClInclude Include="Files\Piece.h" />
+    <ClInclude Include="Files\PieceFactory.h" />
     <ClInclude Include="Files\Point.h" />
+    <ClInclude Include="Files\Queen.h" />
+    <ClInclude Include="Files\RestrictedPiece.h" />
+    <ClInclude Include="Files\Rook.h" />
+    <ClInclude Include="Files\Utils.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Files\Bishop.cpp" />
+    <ClCompile Include="Files\Board.cpp" />
+    <ClCompile Include="Files\King.cpp" />
+    <ClCompile Include="Files\Knight.cpp" />
+    <ClCompile Include="Files\main.cpp" />
+    <ClCompile Include="Files\Pawn.cpp" />
+    <ClCompile Include="Files\Piece.cpp" />
     <ClCompile Include="Files\Point.cpp" />
+    <ClCompile Include="Files\Queen.cpp" />
+    <ClCompile Include="Files\RestrictedPiece.cpp" />
+    <ClCompile Include="Files\Rook.cpp" />
+    <ClCompile Include="Files\Utils.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
