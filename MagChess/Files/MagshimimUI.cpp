@@ -19,9 +19,9 @@ void MagshimimUI::submit(Client::MoveResult result)
 
 Client::Move MagshimimUI::receive()
 {
-    std::string first_half = server_string.substr(0, 1);
     std::string server_string = this->_pipe.getMessageFromGraphics();
-    std::string second_half = server_string.substr(2, 3);
+    std::string first_half = server_string.substr(0, 2);
+    std::string second_half = server_string.substr(2, 2);
     Point source(to_point(first_half));
     Point destination(to_point(second_half));
     return Client::Move{source, destination};
