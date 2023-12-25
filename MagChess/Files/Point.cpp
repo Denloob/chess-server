@@ -36,3 +36,8 @@ bool Point::operator==(const Point &other) const
 {
     return this->x == other.x && this->y == other.y;
 }
+
+Point to_point(const std::string& s)
+{
+    return{ s[0] - 'a' , 8 - (s[1] - '0') };
+}

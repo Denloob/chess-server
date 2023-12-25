@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 struct Point
 {
@@ -15,6 +16,7 @@ struct Point
     Point operator-() const;
     Point operator-(const Point &other) const;
     Point &operator-=(const Point &other);
-
     bool operator==(const Point &other) const;
 };
+
+Point to_point(const std::string& s);
