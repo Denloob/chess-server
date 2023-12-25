@@ -1,7 +1,9 @@
 #pragma once
 
 #include "BoardConstants.h"
+#include "Client.h"
 #include "Point.h"
+#include <exception>
 
 class Board;
 class Piece
@@ -53,4 +55,14 @@ class Piece
     Color _color{};
     mutable Point _pos{};
     Board *_board;
+};
+
+class PieceException : public std::exception
+{
+  public:
+    explicit PieceException(Client::MoveResult reason);
+
+    Client::MoveResult reason() const noexcept;
+  private:
+    Client::MoveResult _reason{};
 };

@@ -67,3 +67,12 @@ Board *Piece::board()
 {
     return this->_board;
 }
+
+PieceException::PieceException(Client::MoveResult reason) : _reason{reason}
+{
+}
+
+Client::MoveResult PieceException::reason() const noexcept
+{
+    return _reason;
+}
