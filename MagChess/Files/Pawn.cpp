@@ -14,11 +14,28 @@ void Pawn::add_attacks_to(Attacks &attacks) const
         attacks, *this);
 }
 
-bool Pawn::can_move_to(const Point &pos) const
+void Pawn::check_move_to(const Point &pos) const
 {
-    return is_move_to_safe(pos) &&
-           (can_advance_to(pos) || can_double_dvance_to(pos) ||
-            can_attack(pos));
+    if (!is_move_to_safe(pos))
+    {
+        throw PieceException{Client::MoveResult::CheckOnSelf};
+    }
+
+    if (pos == this->pos())
+    {
+        throw PieceException{Client::MoveResult::MoveToSelf};
+    }
+
+    if (board()->at(pos) != nullptr && board()->at(pos)->color() == color())
+    {
+        throw PieceException{Client::MoveResult::DestinationOccupied};
+    }
+
+    if (!(can_advance_to(pos) || can_double_dvance_to(pos) ||
+                can_attack(pos)))
+    {
+        throw PieceException{Client::MoveResult::IllegalDestination};
+    }
 }
 
 bool Pawn::can_double_dvance_to(const Point &pos) const

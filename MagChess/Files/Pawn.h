@@ -8,7 +8,7 @@ class Pawn : public RestrictedPiece
     using RestrictedPiece::RestrictedPiece;
 
     void add_attacks_to(Attacks &attacks) const override;
-    bool can_move_to(const Point &pos) const override;
+    void check_move_to(const Point &pos) const noexcept(false) override;
 
   private:
     bool can_advance_to(const Point &pos) const;

@@ -25,20 +25,36 @@ bool Piece::is_move_to_safe(const Point &pos) const
     return can_move;
 }
 
-bool Piece::can_move_to(const Point &pos) const
+void Piece::check_move_to(const Point &pos) const
 {
+    if (!is_move_to_safe(pos))
+    {
+        throw PieceException{Client::MoveResult::CheckOnSelf};
+    }
+
+    if (pos == this->pos())
+    {
+        throw PieceException{Client::MoveResult::MoveToSelf};
+    }
+
+    if (board()->at(pos) != nullptr && board()->at(pos)->color() == color())
+    {
+        throw PieceException{Client::MoveResult::DestinationOccupied};
+    }
+
+
     Attacks attacks{};
     add_attacks_to(attacks);
 
-    return attacks.at(pos.y).at(pos.x) && is_move_to_safe(pos);
+    if (!attacks.at(pos.y).at(pos.x))
+    {
+        throw PieceException{Client::MoveResult::IllegalDestination};
+    }
 }
 
 bool Piece::move_to(const Point &pos)
 {
-    if (!can_move_to(pos))
-    {
-        return false;
-    }
+    check_move_to(pos);
 
     Board &board = *this->_board;
 
