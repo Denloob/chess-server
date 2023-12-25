@@ -1,8 +1,18 @@
 #include "MagshimimUi.h"
+#include <cctype>
+#include <limits>
 
 MagshimimUI::MagshimimUI(Board* board)
 {
-    this->_pipe.connect();
+    bool try_again = true;
+    while (!this->_pipe.connect() && try_again)
+    {
+        std::cout << "Connection failed. Try again? (y/n): ";
+        char answ{};
+        std::cin >> answ;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        try_again = std::tolower(answ) == 'y';
+    }
     this->_pipe.sendMessageToGraphics(&(board->to_string() + "1\0")[0]);
 }
 MagshimimUI::~MagshimimUI()
