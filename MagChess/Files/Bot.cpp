@@ -27,3 +27,8 @@ void Bot::register_commands()
         });
     }
 }
+
+void Bot::start()
+{
+    _cluster.start(dpp::st_wait);
+}
