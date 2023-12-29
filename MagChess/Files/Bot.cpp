@@ -47,3 +47,34 @@ void Bot::start()
 {
     _cluster.start(dpp::st_wait);
 }
+
+void Bot::add_game(const dpp::snowflake &white, const dpp::snowflake &black)
+{
+    std::unique_lock games_lock(_games_mutex);
+
+    auto game =
+        std::make_shared<DiscordGame>(white, black, std::make_unique<Board>());
+
+    _games.try_emplace(white, game);
+    _games.try_emplace(black, game);
+}
+
+Client::MoveResult Bot::move(const dpp::snowflake &id, const Client::Move &move)
+{
+    std::shared_lock games_lock(_games_mutex);
+
+    auto game = _games.at(id);
+    std::unique_lock board_lock(game->board().mutex());
+    Board *board = game->board().ptr();
+
+    return board->do_move(move);
+}
+
+void Bot::remove_game(const dpp::snowflake &id)
+{
+    std::unique_lock games_lock(_games_mutex);
+
+    std::shared_ptr<DiscordGame> game = _games.at(id);
+    _games.erase(game->white_id());
+    _games.erase(game->black_id());
+}
