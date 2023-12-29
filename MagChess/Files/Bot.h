@@ -17,6 +17,11 @@ class Bot
     void register_commands();
     void start();
 
+    template <typename F> void on_ready(F &&fun)
+    {
+        _cluster.on_ready(std::forward<F>(fun));
+    };
+
   private:
     void add_game(const dpp::snowflake &white, const dpp::snowflake &black);
     Client::MoveResult move(const dpp::snowflake &id, const Client::Move &move);
