@@ -38,12 +38,13 @@
 
 #include <stdio.h>
 #include <tchar.h>
-
+#define NOMINMAX
 #include <windows.h>
 #include <string>
 #include <stdio.h>
 #include <conio.h>
 #include <tchar.h>
+#include <fstream>
 
 #pragma endregion
 
@@ -120,9 +121,22 @@ public:
 
 		_tprintf(_T("Sends %ld bytes; Message: \"%s\"\n"),
 			cbBytesWritten, chRequest);
-
 		return true;
 
+	}
+
+	void writeMessageToFile(const char* msg)
+	{
+		std::ofstream outFile("game_log.txt", std::ios_base::app); // Open file in append mode
+		if (outFile.is_open())
+		{
+			outFile << msg << std::endl;
+			outFile.close();
+		}
+		else
+		{
+			_tprintf(_T("Failed to open output file for writing\n"));
+		}
 	}
 
 	std::string getMessageFromGraphics()
@@ -148,7 +162,11 @@ public:
 		_tprintf(_T("Receives %ld bytes; Message: \"%s\"\n"),
 			cbBytesRead, chReply);
 		std::string s = chReply;
+
+		writeMessageToFile(s.c_str());
+
 		return s;
+
 
 	}
 

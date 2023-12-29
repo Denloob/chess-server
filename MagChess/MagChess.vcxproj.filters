@@ -51,6 +51,15 @@
     <ClInclude Include="Files\PieceFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Files\Pipe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Files\targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Files\MagshimimUi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Files\Point.cpp">
@@ -87,6 +96,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Files\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Files\MagshimimUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

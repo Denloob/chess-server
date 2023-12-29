@@ -131,13 +131,16 @@
     <ClInclude Include="Files\Board.h" />
     <ClInclude Include="Files\King.h" />
     <ClInclude Include="Files\Knight.h" />
+    <ClInclude Include="Files\MagshimimUi.h" />
     <ClInclude Include="Files\Pawn.h" />
     <ClInclude Include="Files\Piece.h" />
     <ClInclude Include="Files\PieceFactory.h" />
+    <ClInclude Include="Files\Pipe.h" />
     <ClInclude Include="Files\Point.h" />
     <ClInclude Include="Files\Queen.h" />
     <ClInclude Include="Files\RestrictedPiece.h" />
     <ClInclude Include="Files\Rook.h" />
+    <ClInclude Include="Files\targetver.h" />
     <ClInclude Include="Files\Utils.h" />
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +148,7 @@
     <ClCompile Include="Files\Board.cpp" />
     <ClCompile Include="Files\King.cpp" />
     <ClCompile Include="Files\Knight.cpp" />
+    <ClCompile Include="Files\MagshimimUI.cpp" />
     <ClCompile Include="Files\main.cpp" />
     <ClCompile Include="Files\Pawn.cpp" />
     <ClCompile Include="Files\Piece.cpp" />
