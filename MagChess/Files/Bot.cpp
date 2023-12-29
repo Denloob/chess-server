@@ -3,6 +3,23 @@
 #include <dpp/dpp.h>
 #include <memory>
 
+Bot::Bot(const std::string &token) : _cluster(token)
+{
+    _cluster.on_log(dpp::utility::cout_logger());
+    _cluster.on_slashcommand(
+        [this](const dpp::slashcommand_t &event)
+        {
+            if (event.command.get_command_name() == "challenge")
+            {
+                challenge(event);
+            }
+            else if (event.command.get_command_name() == "move")
+            {
+                move(event);
+            }
+        });
+}
+
 void Bot::register_commands()
 {
     if (dpp::run_once<struct register_bot_commands>())
