@@ -27,6 +27,9 @@ class Bot
     Client::MoveResult move(const dpp::snowflake &id, const Client::Move &move);
     void remove_game(const dpp::snowflake &id);
 
+    void challenge(const dpp::slashcommand_t &event);
+    void move(const dpp::slashcommand_t &event);
+
     dpp::cluster _cluster;
     std::unordered_map<dpp::snowflake, std::shared_ptr<DiscordGame>> _games{};
     mutable std::shared_timed_mutex _games_mutex{};
