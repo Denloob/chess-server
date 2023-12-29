@@ -1,8 +1,6 @@
 #include "Bot.h"
 #include "DiscordGame.h"
-#include <dpp/appcommand.h>
 #include <dpp/dpp.h>
-#include <exception>
 #include <memory>
 
 void Bot::register_commands()
