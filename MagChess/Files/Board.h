@@ -32,6 +32,8 @@ public:
 
     std::string to_string() const;
 
+    Client::MoveResult do_move(Client::Move move);
+
 private:
     const King *const &king_ptr_of(Piece::Color color) const;
     King *&king_ptr_of(Piece::Color color);
@@ -40,4 +42,5 @@ private:
     King *_black_king{};
     King *_white_king{};
     BoardTable <std::unique_ptr<Piece>> _board{};
+    Piece::Color _current_color = Piece::Color::White;
 };

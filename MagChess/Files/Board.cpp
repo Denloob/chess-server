@@ -126,3 +126,45 @@ std::string Board::to_string() const
 
     return res;
 }
+
+namespace
+{
+Piece::Color next_color(Piece::Color color)
+{
+    switch (color)
+    {
+        case Piece::Color::Black:
+            return Piece::Color::White;
+        case Piece::Color::White:
+            return Piece::Color::Black;
+    }
+}
+} // namespace
+
+Client::MoveResult Board::do_move(Client::Move move)
+{
+    using MoveResult = Client::MoveResult;
+
+    try
+    {
+        Piece *piece = this->at(move.source);
+        if (piece == nullptr || piece->color() != _current_color)
+        {
+            return MoveResult::NotYourPiece;
+        }
+
+        piece->move_to(move.dest);
+
+        _current_color = next_color(_current_color);
+        return this->under_check(_current_color) ? MoveResult::Check
+                                                 : MoveResult::Ok;
+    }
+    catch (std::out_of_range &)
+    {
+        return MoveResult::NonExistentSquare;
+    }
+    catch (PieceException &e)
+    {
+        return e.reason();
+    }
+}
