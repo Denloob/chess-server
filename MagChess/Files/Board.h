@@ -6,7 +6,7 @@
 #include <array>
 #include <memory>
 #define DEFAULT_BOARD_STRING "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR b KQkq"
-
+#define BOARD_SIZE 7
 class Board
 {
 public:
@@ -31,7 +31,7 @@ public:
     bool under_check(Piece::Color color);
 
     std::string to_string() const;
-
+    std::string to_fed_string(const Board& board) const;
     Client::MoveResult do_move(Client::Move move);
 
 private:

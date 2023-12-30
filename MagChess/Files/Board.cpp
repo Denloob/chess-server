@@ -83,6 +83,48 @@ King *&Board::king_ptr_of(Piece::Color color)
 {
     return color == Piece::Color::White ? _white_king : _black_king;
 }
+std::string Board::to_fed_string(const Board& board) const
+{
+    std::string result;
+
+    for (int y = 0; y < BOARD_SIZE; ++y)
+    {
+        int emptyCount = 0;
+
+        for (int x = 0; x < BOARD_SIZE; ++x)
+        {
+            const Point pos{ x, y };
+            const Piece* piece = board.at(pos);
+            if (!piece)
+            {
+                emptyCount++;
+            }
+            else
+            {
+                if (emptyCount > 0)
+                {
+                    result += std::to_string(emptyCount);
+                    emptyCount = 0;
+                }
+
+                char pieceChar = (piece->color() == Piece::Color::White) ? std::toupper(static_cast<char>(piece->type())) : static_cast<char>(piece->type());
+                result += pieceChar;
+            }
+        }
+
+        if (emptyCount > 0)
+        {
+            result += std::to_string(emptyCount);
+        }
+
+        if (y < BOARD_SIZE - 1)
+        {
+            result += "/";
+        }
+    }
+
+    return result;
+}
 
 bool Board::under_check(Piece::Color color)
 {
