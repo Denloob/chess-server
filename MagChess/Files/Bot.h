@@ -3,6 +3,7 @@
 #include "Client.h"
 #include "DiscordGame.h"
 #include <dpp/dpp.h>
+#include <exception>
 #include <memory>
 #include <string>
 #include <unordered_map>
@@ -31,4 +32,13 @@ class Bot
     dpp::cluster _cluster;
     std::unordered_map<dpp::snowflake, std::shared_ptr<DiscordGame>> _games{};
     mutable std::shared_timed_mutex _games_mutex{};
+
+    class not_your_move : public std::exception
+    {
+      public:
+        const char *what() const noexcept override
+        {
+            return "It's currently not your move.";
+        }
+    };
 };
