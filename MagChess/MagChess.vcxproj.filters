@@ -66,6 +66,12 @@
     <ClInclude Include="Files\Client.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Files\DiscordGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Files\Bot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Files\Point.cpp">
@@ -105,6 +111,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Files\MagshimimUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Files\DiscordGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Files\Bot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

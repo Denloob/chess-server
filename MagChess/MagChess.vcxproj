@@ -70,6 +70,10 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>C:\Users\Magshimim\Documents\Magshimim\י-11\עקרונות\Project1\Magshess\MagChess\libdpp-10.0.29-win64\include\dpp-10.0;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Magshimim\Documents\Magshimim\י-11\עקרונות\Project1\Magshess\MagChess\libdpp-10.0.29-win64\lib\dpp-10.0;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -104,10 +108,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalOptions>/D DPP %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>dpp.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -130,7 +137,9 @@
     <ClInclude Include="Files\Bishop.h" />
     <ClInclude Include="Files\Board.h" />
     <ClInclude Include="Files\BoardConstants.h" />
+    <ClInclude Include="Files\Bot.h" />
     <ClInclude Include="Files\Client.h" />
+    <ClInclude Include="Files\DiscordGame.h" />
     <ClInclude Include="Files\King.h" />
     <ClInclude Include="Files\Knight.h" />
     <ClInclude Include="Files\MagshimimUi.h" />
@@ -148,6 +157,8 @@
   <ItemGroup>
     <ClCompile Include="Files\Bishop.cpp" />
     <ClCompile Include="Files\Board.cpp" />
+    <ClCompile Include="Files\Bot.cpp" />
+    <ClCompile Include="Files\DiscordGame.cpp" />
     <ClCompile Include="Files\King.cpp" />
     <ClCompile Include="Files\Knight.cpp" />
     <ClCompile Include="Files\MagshimimUI.cpp" />
