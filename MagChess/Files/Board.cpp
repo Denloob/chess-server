@@ -83,7 +83,7 @@ King *&Board::king_ptr_of(Piece::Color color)
 {
     return color == Piece::Color::White ? _white_king : _black_king;
 }
-std::string Board::to_fed_string(const Board& board) const
+std::string Board::to_fen_string() const
 {
     std::string result;
 
@@ -94,7 +94,7 @@ std::string Board::to_fed_string(const Board& board) const
         for (int x = 0; x <= BOARD_SIZE; x++)
         {
             const Point pos{ x, y };
-            const Piece* piece = board.at(pos);
+            const Piece* piece = at(pos);
             if (!piece)
             {
                 emptyCount++;
@@ -224,4 +224,9 @@ Client::MoveResult Board::do_move(Client::Move move)
     {
         return e.reason();
     }
+}
+
+Piece::Color Board::current_color() const
+{
+    return _current_color;
 }

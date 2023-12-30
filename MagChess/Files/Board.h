@@ -25,6 +25,8 @@ public:
 
     std::unique_ptr<Piece> &operator[](const Point &pos);
 
+    Piece::Color current_color() const;
+
     const King &king_of(Piece::Color color) const;
     King &king_of(Piece::Color color);
 
@@ -32,7 +34,7 @@ public:
     bool under_mate(Piece::Color color);
 
     std::string to_string() const;
-    std::string to_fed_string(const Board& board) const;
+    std::string to_fen_string() const;
     Client::MoveResult do_move(Client::Move move);
 
 private:
