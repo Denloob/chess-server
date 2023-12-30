@@ -60,6 +60,9 @@
     <ClInclude Include="Files\MagshimimUi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Files\BoardConstants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Files\Point.cpp">

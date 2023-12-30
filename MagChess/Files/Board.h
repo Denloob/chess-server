@@ -29,6 +29,7 @@ public:
     King &king_of(Piece::Color color);
 
     bool under_check(Piece::Color color);
+    bool under_mate(Piece::Color color);
 
     std::string to_string() const;
     std::string to_fed_string(const Board& board) const;

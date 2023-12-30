@@ -145,6 +145,36 @@ bool Board::under_check(Piece::Color color)
     return enemy_attacks.at(king_pos.y).at(king_pos.x);
 }
 
+bool Board::under_mate(Piece::Color color)
+{
+    Piece::Attacks enemy_attacks{};
+    Piece::Attacks allies_attacks{};
+    for (const auto& row : _board)
+    {
+        for (const auto& piece : row)
+        {
+            if (piece.get() != nullptr && piece->color() != color)
+            {
+                piece->add_attacks_to(enemy_attacks);
+            }
+            else if (piece.get() != nullptr && piece->color() == color)
+            {
+                piece->add_attacks_to(allies_attacks);
+            }
+        }
+    }
+    Point king_pos = king_of(color).pos();
+
+    return (enemy_attacks.at(king_pos.y + 1).at(king_pos.x) && //enemy
+        enemy_attacks.at(king_pos.y - 1).at(king_pos.x) &&
+        enemy_attacks.at(king_pos.y + 1).at(king_pos.x + 1) &&
+        enemy_attacks.at(king_pos.y - 1).at(king_pos.x - 1) &&
+        enemy_attacks.at(king_pos.y + 1).at(king_pos.x - 1) &&
+        enemy_attacks.at(king_pos.y - 1).at(king_pos.x + 1) &&
+        enemy_attacks.at(king_pos.y).at(king_pos.x - 1) &&
+        enemy_attacks.at(king_pos.y).at(king_pos.x + 1)); //enemy end
+           
+}
 std::string Board::to_string() const
 {
     std::string res;
@@ -198,8 +228,7 @@ Client::MoveResult Board::do_move(Client::Move move)
         piece->move_to(move.dest);
 
         _current_color = next_color(_current_color);
-        return this->under_check(_current_color) ? MoveResult::Check
-                                                 : MoveResult::Ok;
+        return this->under_check(_current_color) ? (this->under_mate(_current_color) ? MoveResult::CheckMate : MoveResult::Check)  : MoveResult::Ok;
     }
     catch (std::out_of_range &)
     {
