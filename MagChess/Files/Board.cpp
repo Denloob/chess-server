@@ -83,7 +83,7 @@ King *&Board::king_ptr_of(Piece::Color color)
 {
     return color == Piece::Color::White ? _white_king : _black_king;
 }
-std::string Board::to_fed_string() const
+std::string Board::to_fen_string() const
 {
     std::string result;
 

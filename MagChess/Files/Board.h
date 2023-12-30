@@ -32,7 +32,7 @@ public:
     bool under_mate(Piece::Color color);
 
     std::string to_string() const;
-    std::string to_fed_string() const;
+    std::string to_fen_string() const;
     Client::MoveResult do_move(Client::Move move);
 
 private:
