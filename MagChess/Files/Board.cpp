@@ -223,3 +223,8 @@ Client::MoveResult Board::do_move(Client::Move move)
         return e.reason();
     }
 }
+
+Piece::Color Board::current_color() const
+{
+    return _current_color;
+}

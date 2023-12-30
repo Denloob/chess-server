@@ -25,6 +25,8 @@ public:
 
     std::unique_ptr<Piece> &operator[](const Point &pos);
 
+    Piece::Color current_color() const;
+
     const King &king_of(Piece::Color color) const;
     King &king_of(Piece::Color color);
 
