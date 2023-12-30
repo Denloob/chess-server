@@ -87,6 +87,17 @@ void Bot::remove_game(const dpp::snowflake &id)
     _games.erase(game->black_id());
 }
 
+std::string Bot::fen(const dpp::snowflake &id) const
+{
+    std::shared_lock games_lock(_games_mutex);
+
+    auto game = _games.at(id);
+    std::unique_lock board_lock(game->board().mutex());
+    const Board *board = game->board().ptr();
+
+    return board->to_fen_string();
+}
+
 Piece::Color Bot::current_color(const dpp::snowflake &id) const
 {
     std::shared_lock games_lock(_games_mutex);

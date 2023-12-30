@@ -25,6 +25,7 @@ class Bot
     void add_game(const dpp::snowflake &white, const dpp::snowflake &black);
     Client::MoveResult move(const dpp::snowflake &id, const Client::Move &move);
     void remove_game(const dpp::snowflake &id);
+    std::string fen(const dpp::snowflake &id) const;
 
     void set_color_information_on(dpp::embed &embed, const dpp::snowflake &id) const;
 
