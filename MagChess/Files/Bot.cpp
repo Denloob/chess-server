@@ -78,3 +78,27 @@ void Bot::remove_game(const dpp::snowflake &id)
     _games.erase(game->white_id());
     _games.erase(game->black_id());
 }
+
+Piece::Color Bot::current_color(const dpp::snowflake &id) const
+{
+    std::shared_lock games_lock(_games_mutex);
+
+    auto game = _games.at(id);
+    std::unique_lock board_lock(game->board().mutex());
+    const Board *board = game->board().ptr();
+
+    return board->current_color();
+}
+
+void Bot::set_color_information_on(dpp::embed &embed,
+                                   const dpp::snowflake &id) const
+{
+    auto color = current_color(id);
+    bool is_white = color == Piece::Color::White;
+
+    namespace c = dpp::colors;
+
+    embed.set_color(is_white ? c::white : c::black)
+        .set_footer(dpp::embed_footer().set_text(
+            std::string{is_white ? "White" : "Black"} + "'s move"));
+}

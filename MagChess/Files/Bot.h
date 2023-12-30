@@ -26,6 +26,10 @@ class Bot
     Client::MoveResult move(const dpp::snowflake &id, const Client::Move &move);
     void remove_game(const dpp::snowflake &id);
 
+    void set_color_information_on(dpp::embed &embed, const dpp::snowflake &id) const;
+
+    Piece::Color current_color(const dpp::snowflake &id) const;
+
     void challenge(const dpp::slashcommand_t &event);
     void move(const dpp::slashcommand_t &event);
 
