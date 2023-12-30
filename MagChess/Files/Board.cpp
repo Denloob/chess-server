@@ -87,11 +87,11 @@ std::string Board::to_fed_string(const Board& board) const
 {
     std::string result;
 
-    for (int y = 0; y < BOARD_SIZE; ++y)
+    for (int y = 0; y <= BOARD_SIZE; y++)
     {
         int emptyCount = 0;
 
-        for (int x = 0; x < BOARD_SIZE; ++x)
+        for (int x = 0; x <= BOARD_SIZE; x++)
         {
             const Point pos{ x, y };
             const Piece* piece = board.at(pos);
