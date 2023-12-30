@@ -67,6 +67,14 @@ Client::MoveResult Bot::move(const dpp::snowflake &id, const Client::Move &move)
     std::unique_lock board_lock(game->board().mutex());
     Board *board = game->board().ptr();
 
+    auto expected_id = board->current_color() == Piece::Color::White
+                           ? game->white_id()
+                           : game->black_id();
+    if (id != expected_id)
+    {
+        throw not_your_move();
+    }
+
     return board->do_move(move);
 }
 
