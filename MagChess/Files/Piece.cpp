@@ -52,6 +52,26 @@ void Piece::check_move_to(const Point &pos) const
     }
 }
 
+bool Piece::can_move() const
+{
+    Attacks attacks{};
+    add_attacks_to(attacks);
+    for (int y = 0; y <= BOARD_SIZE; y++)
+    {
+        for (int x = 0; x <= BOARD_SIZE; x++)
+        {
+            const Point pos{ x, y };
+            if (attacks.at(pos.y).at(pos.x))
+            {
+                if (this->is_move_to_safe(pos))
+                {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
 bool Piece::move_to(const Point &pos)
 {
     check_move_to(pos);

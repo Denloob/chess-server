@@ -147,33 +147,17 @@ bool Board::under_check(Piece::Color color)
 
 bool Board::under_mate(Piece::Color color)
 {
-    Piece::Attacks enemy_attacks{};
-    Piece::Attacks allies_attacks{};
     for (const auto& row : _board)
     {
         for (const auto& piece : row)
         {
-            if (piece.get() != nullptr && piece->color() != color)
+            if (piece.get() != nullptr && piece->can_move())
             {
-                piece->add_attacks_to(enemy_attacks);
-            }
-            else if (piece.get() != nullptr && piece->color() == color)
-            {
-                piece->add_attacks_to(allies_attacks);
+                return false; //not mate
             }
         }
     }
-    Point king_pos = king_of(color).pos();
-
-    return (enemy_attacks.at(king_pos.y + 1).at(king_pos.x) && //enemy
-        enemy_attacks.at(king_pos.y - 1).at(king_pos.x) &&
-        enemy_attacks.at(king_pos.y + 1).at(king_pos.x + 1) &&
-        enemy_attacks.at(king_pos.y - 1).at(king_pos.x - 1) &&
-        enemy_attacks.at(king_pos.y + 1).at(king_pos.x - 1) &&
-        enemy_attacks.at(king_pos.y - 1).at(king_pos.x + 1) &&
-        enemy_attacks.at(king_pos.y).at(king_pos.x - 1) &&
-        enemy_attacks.at(king_pos.y).at(king_pos.x + 1)); //enemy end
-           
+    return true; //mate
 }
 std::string Board::to_string() const
 {

@@ -33,6 +33,7 @@ class Piece
     virtual bool move_to(const Point &pos);
     virtual void check_move_to(const Point &pos) const noexcept(false);
     virtual void add_attacks_to(Attacks &attacks) const = 0;
+    virtual bool can_move() const;
 
     Color color() const;
     Point pos() const;

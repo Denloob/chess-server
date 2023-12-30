@@ -130,6 +130,7 @@
     <ClInclude Include="Files\Bishop.h" />
     <ClInclude Include="Files\Board.h" />
     <ClInclude Include="Files\BoardConstants.h" />
+    <ClInclude Include="Files\Client.h" />
     <ClInclude Include="Files\King.h" />
     <ClInclude Include="Files\Knight.h" />
     <ClInclude Include="Files\MagshimimUi.h" />
