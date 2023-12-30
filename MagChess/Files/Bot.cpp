@@ -1,3 +1,5 @@
+#ifdef DPP
+
 #include "Bot.h"
 #include "DiscordGame.h"
 #include "Point.h"
@@ -344,3 +346,5 @@ void Bot::set_color_information_on(dpp::embed &embed,
         .set_footer(dpp::embed_footer().set_text(
             std::string{is_white ? "White" : "Black"} + "'s move"));
 }
+
+#endif

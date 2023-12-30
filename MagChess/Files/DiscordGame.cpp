@@ -1,3 +1,5 @@
+#ifdef DPP
+
 #include "DiscordGame.h"
 
 DiscordGame::DiscordGame(dpp::snowflake white_id, dpp::snowflake black_id,
@@ -20,3 +22,5 @@ UniqueMutexPtr<Board, std::timed_mutex> &DiscordGame::board()
 {
     return _board;
 }
+
+#endif

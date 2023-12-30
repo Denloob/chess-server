@@ -1,3 +1,5 @@
+#ifdef WIN32
+
 #include "MagshimimUi.h"
 #include <cctype>
 #include <limits>
@@ -36,3 +38,5 @@ Client::Move MagshimimUI::receive()
     Point destination(to_point(second_half));
     return Client::Move{source, destination};
 }
+
+#endif
