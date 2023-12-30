@@ -153,6 +153,7 @@ bool Board::under_mate(Piece::Color color)
         {
             const Point pos{ x, y };
             const Piece* piece = this->at(pos);
+            
             if (piece != nullptr && piece->color() == color && piece->can_move())
             {
                 return false; //not mate

@@ -14,6 +14,26 @@ void Pawn::add_attacks_to(Attacks &attacks) const
         attacks, *this);
 }
 
+bool Pawn::can_move() const 
+{
+    for (int y = 0; y <= BOARD_SIZE; y++)
+    {
+        for (int x = 0; x <= BOARD_SIZE; x++)
+        {
+            try
+            {
+                check_move_to({ x,y });
+                return true;
+            }
+            catch (PieceException& e)
+            {
+
+            }
+        }
+    }
+    return false;
+}
+
 void Pawn::check_move_to(const Point &pos) const
 {
     if (!is_move_to_safe(pos))
