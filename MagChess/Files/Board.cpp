@@ -147,11 +147,13 @@ bool Board::under_check(Piece::Color color)
 
 bool Board::under_mate(Piece::Color color)
 {
-    for (const auto& row : _board)
+    for (int y = 0; y <= BOARD_SIZE; y++)
     {
-        for (const auto& piece : row)
+        for (int x = 0; x <= BOARD_SIZE; x++)
         {
-            if (piece.get() != nullptr && piece->can_move())
+            const Point pos{ x, y };
+            const Piece* piece = this->at(pos);
+            if (piece != nullptr && piece->can_move())
             {
                 return false; //not mate
             }
