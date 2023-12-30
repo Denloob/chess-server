@@ -33,6 +33,7 @@ class Bot
 
     void challenge(const dpp::slashcommand_t &event);
     void move(const dpp::slashcommand_t &event);
+    void abort(const dpp::slashcommand_t &event);
 
     dpp::cluster _cluster;
     std::unordered_map<dpp::snowflake, std::shared_ptr<DiscordGame>> _games{};

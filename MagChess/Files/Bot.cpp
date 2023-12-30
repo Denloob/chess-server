@@ -23,6 +23,10 @@ Bot::Bot(const std::string &token) : _cluster(token)
             {
                 move(event);
             }
+            else if (event.command.get_command_name() == "abort")
+            {
+                abort(event);
+            }
         });
 }
 
@@ -38,6 +42,8 @@ void Bot::register_commands()
                 .add_option(
                     dpp::command_option(dpp::co_boolean, "random-color",
                                         "Randomly assign player colors")),
+            dpp::slashcommand("abort", "Abort a currently running game",
+                              _cluster.me.id),
             dpp::slashcommand("move", "Make a move on a currently running game",
                               _cluster.me.id)
                 .add_option(dpp::command_option(
@@ -270,6 +276,31 @@ void Bot::move(const dpp::slashcommand_t &event)
     }
 
     event.reply(message);
+}
+
+void Bot::abort(const dpp::slashcommand_t &event)
+{
+    std::string fen_string;
+
+    try
+    {
+        fen_string = fen(event.command.usr.id);
+        remove_game(event.command.usr.id);
+    }
+    catch (const std::out_of_range &)
+    {
+        event.reply(
+            dpp::message(event.command.channel_id, "You are not in a game.")
+                .set_flags(dpp::m_ephemeral));
+        return;
+    }
+
+    const auto embed =
+        dpp::embed()
+            .set_description("Game aborted.")
+            .set_image(FEN_IMAGE_URL + fen_string + EMBED_IMAGE_URL_SUFFIX);
+
+    event.reply(dpp::message(event.command.channel_id, embed));
 }
 
 std::string Bot::fen(const dpp::snowflake &id) const
