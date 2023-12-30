@@ -260,7 +260,14 @@ void Bot::move(const dpp::slashcommand_t &event)
                            EMBED_IMAGE_URL_SUFFIX)
                 .set_description(from + " - " + to + "\n" + message_text);
 
-        set_color_information_on(embed, player);
+        if (result == Client::MoveResult::CheckMate)
+        {
+            embed.set_color(dpp::colors::orange);
+        }
+        else
+        {
+            set_color_information_on(embed, player);
+        }
 
         message = dpp::message(event.command.channel_id, embed);
     }
