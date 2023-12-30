@@ -117,7 +117,7 @@ std::string Board::to_fed_string(const Board& board) const
             result += std::to_string(emptyCount);
         }
 
-        if (y < BOARD_SIZE - 1)
+        if (y < BOARD_SIZE)
         {
             result += "/";
         }
