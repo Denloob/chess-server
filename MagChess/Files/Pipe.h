@@ -34,11 +34,15 @@
 #pragma region Includes
 #undef UNICODE
 #undef _UNICODE
+
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+
 #include "targetver.h"
 
 #include <stdio.h>
 #include <tchar.h>
-#define NOMINMAX
 #include <windows.h>
 #include <string>
 #include <stdio.h>
