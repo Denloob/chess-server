@@ -11,4 +11,6 @@ class Rook : public RestrictedPiece
     void add_attacks_to(Attacks &attacks) const override;
 
     Type type() const override;
+
+    friend class King;
 };
