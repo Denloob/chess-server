@@ -51,6 +51,9 @@ Client::Move MagshimimUI::receive()
     std::string second_half = server_string.substr(2, 2);
     Point source(to_point(first_half));
     Point destination(to_point(second_half));
+
+    append_log_line(server_string);
+
     return Client::Move{source, destination};
 }
 
