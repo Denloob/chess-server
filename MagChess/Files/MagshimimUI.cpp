@@ -7,7 +7,7 @@
 
 constexpr const char *GAME_LOG_PATH = "game_log.txt";
 
-MagshimimUI::MagshimimUI(Board* board)
+MagshimimUI::MagshimimUI(const Board &board)
 {
     bool try_again = true;
     while (!this->_pipe.connect() && try_again)
@@ -18,7 +18,7 @@ MagshimimUI::MagshimimUI(Board* board)
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         try_again = std::tolower(answ) == 'y';
     }
-    this->_pipe.sendMessageToGraphics(&(board->to_string() + "1\0")[0]);
+    this->_pipe.sendMessageToGraphics(&(board.to_string() + "1\0")[0]);
 }
 MagshimimUI::~MagshimimUI()
 {

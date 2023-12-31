@@ -50,7 +50,7 @@ int discord_main(int argc, char **argv)
 int magshimim_main(int argc, char **argv)
 {
     Board board;
-    MagshimimUI ui{&board};
+    MagshimimUI ui{board};
 
     while (true)
     {

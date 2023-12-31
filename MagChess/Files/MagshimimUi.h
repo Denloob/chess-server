@@ -8,12 +8,11 @@
 class MagshimimUI : public Client
 {
 public:
-    MagshimimUI(Board* board);
+    MagshimimUI(const Board &board);
     ~MagshimimUI();
     Move receive() override;
     void submit(MoveResult result) override;
 
 private:
-    Board* _board{};
     Pipe _pipe;
 };
