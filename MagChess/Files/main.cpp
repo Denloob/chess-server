@@ -2,6 +2,10 @@
 #include <iostream>
 #include <string>
 
+#ifdef _WIN32
+#include "MagshimimUi.h"
+#endif
+
 #ifdef DPP
 #include "Bot.h"
 #include <dpp/dpp.h>
@@ -16,6 +20,11 @@ bool is_flag_present(int argc, char **argv, std::string_view flag)
 #ifdef DPP
 std::string get_bot_token()
 {
+    if (const char *env_token = std::getenv("BOT_TOKEN"))
+    {
+        return env_token;
+    }
+
     std::string token;
     std::cin >> token;
 
@@ -37,6 +46,20 @@ int discord_main(int argc, char **argv)
 }
 #endif
 
+#ifdef _WIN32
+int magshimim_main(int argc, char **argv)
+{
+    Board board;
+    MagshimimUI ui{&board};
+
+    while (true)
+    {
+        ui.submit(board.do_move(ui.receive()));
+    }
+
+    return 0;
+}
+#endif
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
 {
@@ -50,8 +73,11 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv)
     }
     if (is_flag_present(argc, argv, "--magshimim"))
     {
-
+#ifdef _WIN32
+        return magshimim_main(argc, argv);
+#else
         std::cerr << "Magshimim UI is only supported on Windows.\n\n";
+#endif
     }
 
     std::cerr << "No UI has been chosen. Please specify a UI.\n";
