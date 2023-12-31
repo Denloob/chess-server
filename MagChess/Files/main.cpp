@@ -52,9 +52,16 @@ int magshimim_main(int argc, char **argv)
     Board board;
     MagshimimUI ui{board};
 
-    while (true)
+    try
     {
-        ui.submit(board.do_move(ui.receive()));
+        while (true)
+        {
+            ui.submit(board.do_move(ui.receive()));
+        }
+    }
+    catch (const std::out_of_range &)
+    {
+        std::cout << "Exiting...\n";
     }
 
     return 0;
