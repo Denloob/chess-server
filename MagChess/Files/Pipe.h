@@ -48,7 +48,6 @@
 #include <stdio.h>
 #include <conio.h>
 #include <tchar.h>
-#include <fstream>
 
 #pragma endregion
 
@@ -129,20 +128,6 @@ public:
 
 	}
 
-	void writeMessageToFile(const char* msg)
-	{
-		std::ofstream outFile("game_log.txt", std::ios_base::app); // Open file in append mode
-		if (outFile.is_open())
-		{
-			outFile << msg << std::endl;
-			outFile.close();
-		}
-		else
-		{
-			_tprintf(_T("Failed to open output file for writing\n"));
-		}
-	}
-
 	std::string getMessageFromGraphics()
 	{
 		DWORD cbBytesRead;
@@ -166,8 +151,6 @@ public:
 		_tprintf(_T("Receives %ld bytes; Message: \"%s\"\n"),
 			cbBytesRead, chReply);
 		std::string s = chReply;
-
-		writeMessageToFile(s.c_str());
 
 		return s;
 
