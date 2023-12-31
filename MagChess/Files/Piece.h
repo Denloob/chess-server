@@ -37,6 +37,7 @@ class Piece
 
     Color color() const;
     Point pos() const;
+    Point &pos();
 
     const Board *board() const;
     Board *board();

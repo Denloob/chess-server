@@ -94,6 +94,11 @@ Point Piece::pos() const
     return this->_pos;
 }
 
+Point &Piece::pos()
+{
+    return this->_pos;
+}
+
 const Board *Piece::board() const
 {
     return this->_board;
