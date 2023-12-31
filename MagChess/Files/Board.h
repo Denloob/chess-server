@@ -30,8 +30,8 @@ public:
     const King &king_of(Piece::Color color) const;
     King &king_of(Piece::Color color);
 
-    bool under_check(Piece::Color color);
-    bool under_mate(Piece::Color color);
+    bool under_check(Piece::Color color) const;
+    bool under_mate(Piece::Color color) const;
 
     std::string to_string() const;
     std::string to_fen_string() const;

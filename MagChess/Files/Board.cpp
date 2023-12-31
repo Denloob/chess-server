@@ -126,7 +126,7 @@ std::string Board::to_fen_string() const
     return result;
 }
 
-bool Board::under_check(Piece::Color color)
+bool Board::under_check(Piece::Color color) const
 {
     Piece::Attacks enemy_attacks{};
     for (const auto &row : _board)
@@ -145,7 +145,7 @@ bool Board::under_check(Piece::Color color)
     return enemy_attacks.at(king_pos.y).at(king_pos.x);
 }
 
-bool Board::under_mate(Piece::Color color)
+bool Board::under_mate(Piece::Color color) const
 {
     for (int y = 0; y <= BOARD_SIZE; y++)
     {
