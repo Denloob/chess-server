@@ -4,6 +4,7 @@
 
 class Rook : public RestrictedPiece
 {
+  public:
     using RestrictedPiece::check_move_to;
     using RestrictedPiece::RestrictedPiece;
 

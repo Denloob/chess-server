@@ -4,6 +4,7 @@
 
 class Knight : public Piece
 {
+  public:
     using Piece::check_move_to;
     using Piece::Piece;
 
