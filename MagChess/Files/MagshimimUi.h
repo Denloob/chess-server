@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Client.h"
 #include "Board.h"
 #include "Pipe.h"
