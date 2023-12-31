@@ -19,6 +19,8 @@ via VisualStudio.
 
 To run in MagshimimUI mode, specify the `--magshimim` flag, and start the
 Magshimim UI.
+*Note: Castling although works in MagshimimUI mode, will cause rook's to be out
+of sync with it's actual position. That's not a problem in discord mode.*
 
 To run is Discord mode, specify the `--discord` flag, and enter the discord bot
 token to use for the chess bot. You can also specify the token inside an ENV
