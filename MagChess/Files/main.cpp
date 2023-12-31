@@ -3,6 +3,8 @@
 #include <string>
 
 #ifdef _WIN32
+#pragma warning(disable:4996)
+
 #include "MagshimimUi.h"
 #endif
 
