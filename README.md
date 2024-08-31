@@ -1,6 +1,6 @@
 # Magshess
 
-Denis Liubarsky and Marom Shpak present: **Magshimim Chess**!
+Denis Liubarsky and Marom Shpak present: **Magshess**!
 
 ## Building
 Everything should work out of the box, just open the solution and press build.
