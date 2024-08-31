@@ -3,6 +3,8 @@
 Denis Liubarsky and Marom Shpak present: **Magshess**!
 
 ## Building
+
+### Windows
 Everything should work out of the box, just open the solution and press build.
 
 Make sure that you are indeed using VS2022 or have MSVC v143 build tools
@@ -12,6 +14,10 @@ If you are getting DLL not found issues, make sure you are building in debug
 mode, and that the DLLs are indeed present in the same directory as the exe.
 
 If you don't have the DLLs you can acquire them [here](https://github.com/brainboxdotcc/DPP/releases/download/v10.0.29/libdpp-10.0.29-win64-debug-vs2022.zip).
+
+### Linux
+
+After installing [D++](https://dpp.dev), compile all the cpp files with `g++ -lm -ldpp -D DPP` and run
 
 ## Running
 The project is designed to run from a terminal/cmd or with specified arguments
