@@ -32,8 +32,8 @@ To run is Discord mode, specify the `--discord` flag, and enter the discord bot
 token to use for the chess bot. You can also specify the token inside an ENV
 VAR `BOT_TOKEN`.
 
-## If you face any issues
-Please contact one of us, and we will be happy to help.
+## If you face any problems
+Please open an issue on GitHub explaining what went wrong
 
 ## Live demo
 There's a live instance of the bot currently running, invite it using
